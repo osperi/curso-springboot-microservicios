@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  pokedex-mysql:
+    image: mysql:5.7
+    container_name: pokedex-mysql
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=example
+      - MYSQL_DATABASE=test
+      - MYSQL_USER=app
+      - MYSQL_PASSWORD=root
+      #- MYSQL_ROOT_HOST= '%'
+  pokedex:
+    container_name: pokedex-api-rest
+    restart: always
+    image: pepesan/pokedex-microservice:latest
+    #build: .
+    #build:
+    #      context: ./
+    #      dockerfile: Dockerfile
+    depends_on:
+      - pokedex-mysql
+    ports:
+      - 8080:8080
+    environment:
+      #- "SPRING_PROFILES_ACTIVE=default"
+      #- SPRING_DATASOURCE_URL=jdbc:mysql://pokedex-mysql:3306/test
+      #- SPRING_DATASOURCE_USERNAME=root
+      #- SPRING_DATASOURCE_PASSWORD=example
+      #- SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver
+      #- SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT = org.hibernate.dialect.MySQL5Dialect
+      #- SPRING_PROFILES_ACTIVE=container
+      #- SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
+      #- SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.MySQL5Dialect
+      #- DATABASE_HOST=localhost
+      #- DATABASE_USER=root
+      #- DATABASE_PASSWORD=example
+      #- DATABASE_NAME=test
+      #- DATABASE_PORT=3306
+      #- DEBUG=true
+      - SPRING_PROFILES_ACTIVE=docker

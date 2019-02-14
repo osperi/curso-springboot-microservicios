@@ -1,0 +1,25 @@
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="test.css">
+</head>
+
+<p> Hello World</p>
+<body>
+<p><a href="/">Volver</a></p>
+<table>
+    <thead>
+    <tr>
+        <th> Title </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${listado.empty}">
+        <td colspan="2"> No Books Available </td>
+    </tr>
+    <tr th:each="item : ${listado}">
+        <td><span th:text="${item}"> Title </span></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,16 @@
+spring:
+  jpa:
+      database-platform: org.hibernate.dialect.MySQL5Dialect
+      hibernate:
+        ddl-auto: create-drop
+      show-sql: false
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.MySQL5Dialect
+  datasource:
+    url: jdbc:mysql://pokedex-mysql:3306/test
+    username: root
+    password: example
+    driver-class-name: com.mysql.jdbc.Driver
+
+    #initialize: true
